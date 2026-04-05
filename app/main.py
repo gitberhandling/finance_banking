@@ -9,6 +9,9 @@ from app.core.config import get_settings
 from app.core.logging import setup_logging
 from app.api.v1.router import api_router
 
+from app.core.database import engine, Base
+import app.models  # Ensures models are discovered
+
 settings = get_settings()
 setup_logging()
 
@@ -16,8 +19,8 @@ setup_logging()
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     """Application lifespan: startup and shutdown events."""
-    # On startup — tables are created via Alembic migrations in production.
-    # For development convenience, you can run: alembic upgrade head
+    async with engine.begin() as conn:
+        await conn.run_sync(Base.metadata.create_all)
     yield
     # Cleanup if needed
 
