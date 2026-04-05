@@ -10,7 +10,7 @@ Provide the full URL to your public GitHub repository containing the project sou
 ---
 
 ## 🌐 Live Demo / API Documentation URL
-https://your-api.onrender.com/docs
+https://finance-backend-api-kpy8.onrender.com/docs
 
 If deployed, this link provides access to the live API documentation (Swagger UI). Alternatively, local docs are available at:
 http://localhost:8000/docs
